@@ -1,2 +1,2 @@
 # read-only-directory.el
-Open all files in read-only-mode under the directory for code reading.
+Open files in directory in read-only-mode.

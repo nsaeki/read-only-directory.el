@@ -1,6 +1,10 @@
 # read-only-directory.el
 
-Open files in directory in read-only-mode.
+Open all files always in read-only-mode if those files are in
+specified directories.
+
+This el is intented to use avoid changing files when you open
+someone's file for reading (especially you use auto-save-buffers).
 
 ## Install
 
@@ -15,11 +19,22 @@ https://github.com/nsaeki/read-only-directory.el/blob/master/read-only-directory
 (read-only-directory-init)
 ```
 
-and then if you open the file or directory you want to make their siblings or children be
-read-only (for example, you are reading someone's code and do not want to modify them),
-run `M-x read-only-directory`.
+and then when you open the file or directory you want to make their
+siblings or children read-only, run `M-x read-only-directory`.
 
-If you want to remove the directory from read-only-direcotry-list, run again `M-x read-only-directory`.
+If you want to restore the directory to normal mode, run again `M-x
+read-only-directory`.
+
+You can define following function to add repository root into
+read-only-diretory-list (needs projectile.el).
+
+```elisp
+(defun my-read-only-directory ()
+  (interactive)
+  (read-only-mode t)
+  (read-only-directory (when (projectile-project-p)
+                         (projectile-project-root))))
+```
 
 ## Details
 
